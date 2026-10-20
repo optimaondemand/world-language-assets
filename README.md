@@ -1,18 +1,18 @@
-# World Language Games
+# World Language Assets
 
-Interactive games and tools for Optima Academy Online's world-language courses (Latin, Spanish, French),
+Interactive games, tools and shared media for Optima Academy Online's world-language courses (Latin, Spanish, French),
 published with GitHub Pages so lesson pages and Canvas can embed them.
 
-**Site:** https://optimaondemand.github.io/world-language-games/
+**Site:** https://optimaondemand.github.io/world-language-assets/
 
-## How games get here
+## How assets get here
 
-1. **Prototype:** a game is built and reviewed as a private Claude artifact.
-2. **Approved:** once David approves it, the game moves here.
-3. **Used selectively:** a game is placed in a lesson only where it fits that lesson. There is no rule
-   that every module gets every game.
+1. **Prototype:** a game or tool is built and reviewed as a private Claude artifact.
+2. **Approved:** once David approves it, it moves here.
+3. **Used selectively:** an asset is placed in a lesson only where it fits that lesson. There is no rule
+   that every module gets every game or tool.
 
-## Rules every game follows
+## Rules every game and tool follows
 
 - **Nothing untaught:** a game uses only language taught *before* the lesson it sits in.
 - **Accents:** any game that needs typed accents provides a way to type them.
@@ -26,14 +26,14 @@ published with GitHub Pages so lesson pages and Canvas can embed them.
 
 | Path | What it is |
 |---|---|
-| `engines/` | One file per game type, shared by every course (`voyage.js` = map voyage) |
-| `data/` | The content of each game: questions, ports, story cards, map data |
-| `<course>/<module>-<game>/index.html` | A ready-to-use game page, e.g. `latin1/m03-iter-aeneae/` |
+| `engines/` | One file per game or tool type, shared by every course (`voyage.js` = map voyage) |
+| `data/` | The content of each game or tool: questions, ports, story cards, map data |
+| `<course>/<module>-<game>/index.html` | A ready-to-use page, e.g. `latin1/m03-iter-aeneae/` |
 | `tools/` | `build_pages.py` builds the pages from `data/`; `make_map.py` rebuilds the map from Natural Earth |
 
 After changing data or an engine, run `python -I tools/build_pages.py`, check the page in a browser,
 then commit and push. GitHub Pages republishes automatically. Afterwards, refresh the OneDrive mirror
-(`_Shared/deployment-mirrors/refresh-mirrors.sh world-language-games`).
+(`_Shared/deployment-mirrors/refresh-mirrors.sh world-language-assets`).
 
 ## Games
 
@@ -46,6 +46,6 @@ then commit and push. GitHub Pages republishes automatically. Afterwards, refres
 Embed the page in a lesson page or a Canvas page with an iframe:
 
 ```html
-<iframe src="https://optimaondemand.github.io/world-language-games/latin1/m03-iter-aeneae/"
+<iframe src="https://optimaondemand.github.io/world-language-assets/latin1/m03-iter-aeneae/"
         title="Iter Aenēae" style="width:100%;height:1250px;border:0" loading="lazy"></iframe>
 ```
