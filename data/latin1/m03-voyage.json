@@ -1,0 +1,363 @@
+{
+ "title": "Iter Aenēae · Module 3 (Troy to Sicily)",
+ "steps": 3,
+ "labels": [
+  {
+   "text": "Trōia",
+   "lon": 28.3,
+   "lat": 39.55
+  },
+  {
+   "text": "Graecia",
+   "lon": 21.7,
+   "lat": 39.7
+  },
+  {
+   "text": "Italia",
+   "lon": 15.4,
+   "lat": 41.0
+  },
+  {
+   "text": "Sicilia",
+   "lon": 14.25,
+   "lat": 37.5
+  },
+  {
+   "text": "Mare Nostrum",
+   "lon": 19.8,
+   "lat": 34.2,
+   "sea": true
+  }
+ ],
+ "ports": [
+  {
+   "name": "Trōia",
+   "title": "Troy has fallen",
+   "story": "After ten years of war, the Greeks break Troy open and its towers burn. Out of the ruins comes Aeneas, a Trojan prince. The gods tell him to find a new home in the west, in Italy. He gathers the survivors and builds a fleet.",
+   "latin": "Aenēās nauta est.",
+   "english": "Aeneas is a sailor.",
+   "lon": 26.17,
+   "lat": 39.96
+  },
+  {
+   "name": "Mare Nostrum",
+   "title": "Out on “Our Sea”",
+   "story": "The fleet sets out across the great sea the Romans called Mare Nostrum, “Our Sea.” The voyage will be long and uncertain.",
+   "latin": "Nautae aquam vident.",
+   "english": "The sailors see the water.",
+   "quote": {
+    "ref": "Book 1, lines 1–3",
+    "latin": "Arma virumque canō, Trōiae quī prīmus ab ōrīs\nĪtaliam fātō profugus Lāvīniaque vēnit\nlītora, multum ille et terrīs iactātus et altō",
+    "english": "I sing of arms and the man who first came from the shores of Troy, an exile driven by fate, to Italy and the shores of Lavinium; much was he tossed about on land and on the deep sea.",
+    "meaning": "These are the poem's first words. Aeneas did not choose this voyage: fate sent him. The whole Aeneid is about a man who keeps going because it is his duty."
+   },
+   "lon": 25.3,
+   "lat": 38.5
+  },
+  {
+   "name": "Venus",
+   "title": "Venus watches over the fleet",
+   "story": "Venus, goddess of love, is Aeneas's own mother. She guards and guides him toward Italy.",
+   "latin": "Venus nautās amat.",
+   "english": "Venus loves the sailors.",
+   "quote": {
+    "ref": "Book 1, line 33",
+    "latin": "Tantae mōlis erat Rōmānam condere gentem.",
+    "english": "So great a labor it was to found the Roman people.",
+    "meaning": "Vergil wants his readers to feel what Rome cost: storms, losses, years at sea. Great things take great effort, and the gods' quarrels make it harder still."
+   },
+   "lon": 22.6,
+   "lat": 35.95
+  },
+  {
+   "name": "the storm",
+   "title": "A storm in the dark",
+   "story": "Juno, queen of the gods, hates the Trojans and never lets them rest. Out on the open sea, a storm wraps the fleet in darkness for three days and nights, until even the helmsman cannot tell day from night. Aeneas holds his course, the way a Roman hero should.",
+   "latin": "Iūnō nautās nōn amat.",
+   "english": "Juno does not love the sailors.",
+   "quote": {
+    "ref": "Book 1, line 199 (Aeneas encouraging his crew)",
+    "latin": "ō passī graviōra, dabit deus hīs quoque fīnem.",
+    "english": "O you who have suffered worse things, a god will grant an end to these too.",
+    "meaning": "Aeneas is as tired and frightened as his men, but he speaks to give them courage. Leading others through hardship is part of his duty."
+   },
+   "lon": 18.5,
+   "lat": 36.5
+  },
+  {
+   "name": "Sicilia",
+   "title": "Land at last: Sicily",
+   "story": "After years of wandering, the battered fleet reaches the island of Sicily. Here Aeneas's old father, Anchises, dies. Italy is close now, but Juno is not finished: her greatest storm is still to come.",
+   "latin": "Nautae terram vident.",
+   "english": "The sailors see the land.",
+   "quote": {
+    "ref": "Book 1, lines 203–206 (Aeneas encouraging his crew)",
+    "latin": "forsan et haec ōlim meminisse iuvābit.\nPer variōs cāsūs, per tot discrīmina rērum\ntendimus in Latium, sēdēs ubi Fāta quiētās\nostendunt; illīc fās rēgna resurgere Trōiae.",
+    "english": "Perhaps one day it will be a joy to remember even these things. Through many misfortunes, through so many dangers, we are heading for Latium, where the Fates show us a peaceful home; there Troy’s kingdom is destined to rise again.",
+    "meaning": "This is why they endure: the hardships have a purpose. A long, hard road leads to a new home, and one day even the storms will be worth remembering."
+   },
+   "lon": 14.1,
+   "lat": 36.95
+  }
+ ],
+ "legs": [
+  [
+   [
+    26.17,
+    39.96
+   ],
+   [
+    25.6,
+    39.3
+   ],
+   [
+    25.3,
+    38.5
+   ]
+  ],
+  [
+   [
+    25.3,
+    38.5
+   ],
+   [
+    24.0,
+    36.2
+   ],
+   [
+    22.6,
+    35.95
+   ]
+  ],
+  [
+   [
+    22.6,
+    35.95
+   ],
+   [
+    20.5,
+    35.6
+   ],
+   [
+    18.5,
+    36.5
+   ]
+  ],
+  [
+   [
+    18.5,
+    36.5
+   ],
+   [
+    16.0,
+    36.1
+   ],
+   [
+    14.1,
+    36.95
+   ]
+  ]
+ ],
+ "questions": [
+  {
+   "q": "In “Puella nautam videt,” who is doing the seeing?",
+   "options": [
+    "the girl",
+    "the sailor",
+    "the water"
+   ],
+   "answer": 0,
+   "why": "Puella ends in -a: it is the subject."
+  },
+  {
+   "q": "The sailor sees the island: “Nauta ___ videt.”",
+   "options": [
+    "īnsulam",
+    "īnsula",
+    "īnsulae"
+   ],
+   "answer": 0,
+   "why": "The island receives the action, so it takes -am."
+  },
+  {
+   "q": "Which ending marks ONE object (accusative singular)?",
+   "options": [
+    "-am",
+    "-a",
+    "-ae"
+   ],
+   "answer": 0,
+   "why": "-am = one object."
+  },
+  {
+   "q": "Which ending marks MORE THAN ONE subject (nominative plural)?",
+   "options": [
+    "-ae",
+    "-ās",
+    "-am"
+   ],
+   "answer": 0,
+   "why": "-ae = more than one subject."
+  },
+  {
+   "q": "Translate: “Nautae aquam vident.”",
+   "options": [
+    "The sailors see the water.",
+    "The water sees the sailors.",
+    "The sailor sees the water."
+   ],
+   "answer": 0,
+   "why": "Nautae (-ae) is the subject; aquam (-am) is the object."
+  },
+  {
+   "q": "In “Iūnō nautās nōn amat,” what is nautās?",
+   "options": [
+    "accusative plural (the object)",
+    "nominative plural (the subject)",
+    "accusative singular (the object)"
+   ],
+   "answer": 0,
+   "why": "-ās = more than one object."
+  },
+  {
+   "q": "What does “Venus nautās amat” mean?",
+   "options": [
+    "Venus loves the sailors.",
+    "The sailors love Venus.",
+    "Venus loves the sailor."
+   ],
+   "answer": 0,
+   "why": "Nautās is the object, and -ās means more than one."
+  },
+  {
+   "q": "What does “Iūnō nautās nōn amat” mean?",
+   "options": [
+    "Juno does not love the sailors.",
+    "The sailors do not love Juno.",
+    "Juno loves the sailors."
+   ],
+   "answer": 0,
+   "why": "Nōn = not."
+  },
+  {
+   "q": "What does silva mean?",
+   "options": [
+    "forest",
+    "road",
+    "island"
+   ],
+   "answer": 0,
+   "why": "Silva → sylvan, Pennsylvania."
+  },
+  {
+   "q": "What does via mean?",
+   "options": [
+    "road, way",
+    "water",
+    "land"
+   ],
+   "answer": 0,
+   "why": "Via → viaduct, deviate."
+  },
+  {
+   "q": "What does terra mean?",
+   "options": [
+    "land, earth",
+    "sea",
+    "girl"
+   ],
+   "answer": 0,
+   "why": "Terra → terrain, territory."
+  },
+  {
+   "q": "What does īnsula mean?",
+   "options": [
+    "island",
+    "woman",
+    "forest"
+   ],
+   "answer": 0,
+   "why": "Īnsula → peninsula, insulate."
+  },
+  {
+   "q": "The woman sees the road: “Fēmina ___ videt.”",
+   "options": [
+    "viam",
+    "via",
+    "viae"
+   ],
+   "answer": 0,
+   "why": "The road receives the action: -am."
+  },
+  {
+   "q": "The sailors see the land: “___ terram vident.”",
+   "options": [
+    "Nautae",
+    "Nauta",
+    "Nautās"
+   ],
+   "answer": 0,
+   "why": "More than one subject: -ae."
+  },
+  {
+   "q": "In “Terram nauta videt,” which word is the object?",
+   "options": [
+    "terram",
+    "nauta",
+    "videt"
+   ],
+   "answer": 0,
+   "why": "-am marks the object, even when it comes first."
+  },
+  {
+   "q": "Translate: “Puellae silvās vident.”",
+   "options": [
+    "The girls see the forests.",
+    "The forests see the girls.",
+    "The girl sees the forest."
+   ],
+   "answer": 0,
+   "why": "Puellae (-ae) subject; silvās (-ās) object."
+  },
+  {
+   "q": "Is nauta masculine or feminine?",
+   "options": [
+    "masculine",
+    "feminine"
+   ],
+   "answer": 0,
+   "why": "A sailor was a man, even though the word looks like the others."
+  },
+  {
+   "q": "Translate: “Īnsulam puella videt.”",
+   "options": [
+    "The girl sees the island.",
+    "The island sees the girl.",
+    "The girls see the island."
+   ],
+   "answer": 0,
+   "why": "The endings decide, not the word order."
+  },
+  {
+   "q": "The Romans called the Mediterranean Mare Nostrum. What does that mean?",
+   "options": [
+    "Our Sea",
+    "the Trojan Sea",
+    "the Great Storm"
+   ],
+   "answer": 0,
+   "why": "Nostrum = our."
+  },
+  {
+   "q": "Which goddess protects Aeneas?",
+   "options": [
+    "Venus, his mother",
+    "Juno, queen of the gods"
+   ],
+   "answer": 0,
+   "why": "Juno hates the Trojans; Venus is Aeneas's mother."
+  }
+ ],
+ "next": "Next voyage (Module 4): as the fleet leaves Sicily for Italy, Juno's greatest storm drives it to a new city on the coast of Africa. Which one?",
+ "quoteCredit": "Latin: Dickinson College Commentaries (Francese & Reedy, Vergil: Aeneid Selections, 2016). Translations: our own."
+}
