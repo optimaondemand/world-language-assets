@@ -20,3 +20,4 @@
 | Vocabulaire trainer layout, sounds | `engines/vocab.js` | Optima Academy Online | © Optima Academy Online |
 | Painting: Pierre-Auguste Renoir, Bal du moulin de la Galette (1876), full view | `media/french1/home-moulin.jpg` (French 1 S2 Canvas home page) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg | Public domain |
 | Title lettering "La France en profondeur" | `media/french1/home-title.png` | Optima Academy Online; Pinyon Script font (SIL Open Font License) | © Optima Academy Online |
+| Painting: Claude Monet, Impression, soleil levant (1872), full view | `media/french1/home-monet.jpg` (French 1 S2 Canvas home page hero) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg | Public domain |
