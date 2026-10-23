@@ -18,3 +18,5 @@
 | Painting: Pierre-Auguste Renoir, Le Moulin de la Galette | `media/french1/m8.jpg` (French 1 Vocabulaire trainer, lessons) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg | Public domain |
 | Painting: Claude Monet - The Rue Montorgueil in Paris. Celebration of June 30, 1878 - Google Art Project | `media/french1/m9.jpg` (French 1 Vocabulaire trainer, lessons) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Claude_Monet_-_The_Rue_Montorgueil_in_Paris._Celebration_of_June_30,_1878_-_Google_Art_Project.jpg | Public domain |
 | Vocabulaire trainer layout, sounds | `engines/vocab.js` | Optima Academy Online | © Optima Academy Online |
+| Painting: Pierre-Auguste Renoir, Bal du moulin de la Galette (1876), full view | `media/french1/home-moulin.jpg` (French 1 S2 Canvas home page) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg | Public domain |
+| Title lettering "La France en profondeur" | `media/french1/home-title.png` | Optima Academy Online; Pinyon Script font (SIL Open Font License) | © Optima Academy Online |
