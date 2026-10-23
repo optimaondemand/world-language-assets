@@ -41,6 +41,12 @@ then commit and push. GitHub Pages republishes automatically. Afterwards, refres
 |---|---|---|
 | *Iter Aenēae* (the journey of Aeneas) | Latin 1 · Module 3, Lesson 3.05 | `latin1/m03-iter-aeneae/` |
 
+## Tools
+
+| Tool | Course · where it fits | Page |
+|---|---|---|
+| *Vocabulaire* practice trainer (cards, listening, typing with accent bank, pairs; practice only, not graded) | French 1 S2 · every module's Entraînement section; Lesson 1.06 check-in links to `#m1-listen` | `french1/vocabulaire/` (deep links `#m<N>[-cards\|listen\|write\|pairs]`) |
+
 ## Using a game in a lesson
 
 Embed the page in a lesson page or a Canvas page with an iframe:
