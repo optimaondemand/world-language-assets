@@ -15,6 +15,16 @@
   var D; try { D = JSON.parse(root.getAttribute('data-voyage')); } catch (e) { return; }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var NS = 'http://www.w3.org/2000/svg', STEPS = D.steps || 3, TOTAL = D.legs.length * STEPS;
+  var VELO = D.theme === 'velo';
+  var T = VELO ? { right: 'Bravo ! (Well done!) ', back: 'Un pneu crevé ! (A flat tyre!) You lose one step. ', safe: 'Un pneu crevé ! (A flat tyre!) But you are safe in town. ',
+                   answer: 'The answer is ', go: 'Ride on', start: 'Set off', on: 'Ride on to ', see: 'See my tour', begins: 'The tour begins', reached: 'Stage reached · ',
+                   leg: 'Stage ', toward: ' · to ', fin: 'Bravo ! (Well done!) You reached ', rode: function (m) { return m ? ', and fixed ' + m + ' flat tyre' + (m > 1 ? 's' : '') + '.' : ' — not a single flat tyre.'; },
+                   again: 'Encore ! (Again!)', aria: 'Map of France with your route around the regions' }
+              : { right: 'Rēctē! (Correct!) ', back: 'Juno sends a wave! Your ship is pushed back one step. ', safe: 'Juno sends a wave, but your ship is safe in the harbour. ',
+                  answer: 'The answer is ', go: 'Sail on', start: 'Set sail', on: 'Sail on to ', see: 'See my voyage', begins: 'The voyage begins', reached: 'Port reached · ',
+                  leg: 'Leg ', toward: ' · toward ', fin: 'Optimē! (Excellent!) You reached ', rode: function (m) { return m ? ', and rode out ' + m + ' of Juno’s waves.' : ' — Juno never touched you.'; },
+                  again: 'Iterum! (Again!)', aria: 'Map of the Mediterranean with the route of Aeneas' };
+  for (var tk in (D.text || {})) T[tk] = D.text[tk];
 
   var css =
     '.voyage-game{font-family:"EB Garamond",Garamond,Georgia,serif;color:#2b1d0e}' +
@@ -51,7 +61,13 @@
     '.vg-storm.on{background:radial-gradient(ellipse at 50% 30%,rgba(40,50,70,.45),rgba(40,50,70,.15))}' +
     '@keyframes vgRock{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}' +
     '.vg-ship-inner{transform-box:fill-box;transform-origin:50% 80%}' +
-    (reduce ? '' : '.vg-ship-inner{animation:vgRock 3.2s ease-in-out infinite}.vg-ship.hit .vg-ship-inner{animation:vgRock .35s ease-in-out 4}');
+    (reduce ? '' : '.vg-ship-inner{animation:vgRock 3.2s ease-in-out infinite}.vg-ship.hit .vg-ship-inner{animation:vgRock .35s ease-in-out 4}') +
+    (VELO ? '.vg-velo .vg-label{font-family:"EB Garamond",Georgia,serif;font-size:16px;font-weight:600;fill:#3b2a14;letter-spacing:.03em}' +
+      '.vg-velo .vg-sea{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:17px;fill:#dbe8f4;letter-spacing:.06em}' +
+      '.vg-france{fill:#f1e2bb;stroke:#5a3e1c;stroke-width:1.4;stroke-linejoin:round}.vg-velo .vg-land{fill:#d9ccb0;stroke:#9a8562}' +
+      '.vg-velo .vg-route{stroke:#7a2e1f;opacity:.55}.vg-velo .vg-done{stroke:#d4462e}' +
+      '.vg-puff{font:700 15px "Segoe UI",Arial,sans-serif;fill:#7a2e1f}' +
+      (reduce ? '' : '.vg-velo .vg-ship-inner{animation:none}.vg-velo .vg-ship.hit .vg-ship-inner{animation:vgRock .3s ease-in-out 3}') : '');
   if (!document.querySelector('link[data-vg-fonts]')) {   // Uncial Antiqua (map names) + EB Garamond (text), Google Fonts
     var fl = document.createElement('link'); fl.rel = 'stylesheet'; fl.setAttribute('data-vg-fonts', '');
     fl.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Uncial+Antiqua&display=swap';
@@ -79,7 +95,11 @@
     });
     lp.connect(g); g.connect(a.destination);
   }
-  function soundStep() { try { var t = ctx().currentTime + 0.02; horn(392, t, 0.13, 0.13); horn(523.3, t + 0.15, 0.32, 0.13); } catch (e) {} }   // G4 → C5
+  function bell(at) {                               // a bicycle bell: two bright partials, quick decay
+    var a = ctx(); [[2350, .09], [3100, .05]].forEach(function (p) { var o = a.createOscillator(), g = a.createGain(); o.type = 'sine'; o.frequency.value = p[0];
+      g.gain.setValueAtTime(0.0001, at); g.gain.linearRampToValueAtTime(p[1], at + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.55); o.connect(g); g.connect(a.destination); o.start(at); o.stop(at + 0.6); });
+  }
+  function soundStep() { try { var t = ctx().currentTime + 0.02; if (VELO) { bell(t); bell(t + 0.16); return; } horn(392, t, 0.13, 0.13); horn(523.3, t + 0.15, 0.32, 0.13); } catch (e) {} }   // G4 → C5
   function soundPort() {                            // ta-ta-ta-taaa: C5 C5 C5 G5 with a low C underneath
     try { var t = ctx().currentTime + 0.02; [[523.3, 0, 0.12], [523.3, 0.15, 0.12], [523.3, 0.3, 0.12], [784, 0.45, 0.75]].forEach(function (n) { horn(n[0], t + n[1], n[2], 0.12); });
       horn(261.6, t + 0.45, 0.75, 0.08); } catch (e) {}
@@ -103,6 +123,13 @@
     } catch (e) {}
   }
   function soundWave() {                            // a gust of wind: noise through a sweeping, resonant band-pass
+    if (VELO) { try {                                 // velo: a tyre losing air (a falling hiss)
+      var a0 = ctx(), n = Math.floor(a0.sampleRate * 1.1), b0 = a0.createBuffer(1, n, a0.sampleRate), d0 = b0.getChannelData(0);
+      for (var j = 0; j < n; j++) d0[j] = Math.random() * 2 - 1;
+      var s0 = a0.createBufferSource(), f0 = a0.createBiquadFilter(), g0 = a0.createGain(), t0 = a0.currentTime; s0.buffer = b0; f0.type = 'highpass';
+      f0.frequency.setValueAtTime(5200, t0); f0.frequency.exponentialRampToValueAtTime(900, t0 + 1.0);
+      g0.gain.setValueAtTime(0.0001, t0); g0.gain.linearRampToValueAtTime(0.28, t0 + 0.05); g0.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.05);
+      s0.connect(f0); f0.connect(g0); g0.connect(a0.destination); s0.start(t0); } catch (e) {} return; }
     try {
       var a = ctx(), dur = 1.8, len = Math.floor(a.sampleRate * dur), buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
       for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
@@ -136,7 +163,8 @@
   }
   function drawMap() {
     var map = el('div', 'vg-map');
-    svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'Map of the Mediterranean with the route of Aeneas' });
+    if (VELO) map.classList.add('vg-velo');
+    svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': T.aria });
     var defs = sv('defs', {});
     var wav = sv('pattern', { id: 'vgWaves', width: 28, height: 18, patternUnits: 'userSpaceOnUse' });
     wav.innerHTML = '<path d="M0 13 C4 13 6 5 11 5 C15 5 16 10 12.8 10 C10.6 10 10.8 7.4 12.8 7.6 M12.8 10 C17 14 22 13 28 13" fill="none" stroke="#5f93c4" stroke-width="1.1" opacity=".45"/>';
@@ -148,6 +176,7 @@
     svg.appendChild(sv('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#vgSea)' }));
     svg.appendChild(sv('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#vgWaves)' }));
     LAND.forEach(function (d) { svg.appendChild(sv('path', { d: d, 'class': 'vg-land' })); });
+    (M.france || []).forEach(function (d) { svg.appendChild(sv('path', { d: d, 'class': 'vg-france' })); });
     (D.labels || []).forEach(function (l) { var t = sv('text', { x: l.x, y: l.y, 'class': l.sea ? 'vg-sea' : 'vg-label', 'text-anchor': 'middle' }); t.textContent = l.text; svg.appendChild(t); });
     D.legs.forEach(function (d) { var p = sv('path', { d: d, 'class': 'vg-route' }); svg.appendChild(p); legPaths.push(p); });
     done = sv('path', { d: '', 'class': 'vg-done' }); svg.appendChild(done);
@@ -155,15 +184,22 @@
     // the ship: a small galley with a square sail and oars
     ship = sv('g', { 'class': 'vg-ship' });
     var inner = sv('g', { 'class': 'vg-ship-inner' });
-    inner.innerHTML = '<path d="M-20 4 Q0 14 22 4 L18 0 L-16 0 Z" fill="#6b3f1d" stroke="#3b2210" stroke-width="1"/>' +
+    if (VELO) inner.innerHTML = '<circle cx="-10" cy="6" r="7" fill="none" stroke="#1d2a44" stroke-width="2"/><circle cx="11" cy="6" r="7" fill="none" stroke="#1d2a44" stroke-width="2"/>' +
+      '<path d="M-10 6 L-2 -4 L8 -4 L11 6 M-2 -4 L1 6 L-10 6 M8 -4 L7 -9 M5 -9 L10 -9 M-3 -6 L-1 -6" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M-1 -6 L2 -15 L7 -10" fill="none" stroke="#1d2a44" stroke-width="2.4" stroke-linecap="round"/><path d="M2 -15 L-3 -8 L1 6" fill="none" stroke="#1d2a44" stroke-width="2.2" stroke-linecap="round"/>' +
+      '<circle cx="4" cy="-19" r="3.4" fill="#f2c7a5" stroke="#1d2a44" stroke-width="1"/><path d="M0.5 -21 Q4 -25 7.5 -21 Z" fill="#f4d03f" stroke="#1d2a44" stroke-width=".8"/>';
+    else inner.innerHTML = '<path d="M-20 4 Q0 14 22 4 L18 0 L-16 0 Z" fill="#6b3f1d" stroke="#3b2210" stroke-width="1"/>' +
       '<path d="M22 4 Q28 0 26 -6" stroke="#6b3f1d" stroke-width="3" fill="none"/>' +
       '<line x1="0" y1="0" x2="0" y2="-26" stroke="#3b2210" stroke-width="2"/>' +
       '<path d="M-11 -24 L11 -24 L10 -6 L-10 -6 Z" fill="#f6efe0" stroke="#9b8a6a" stroke-width="1"/>' +
       '<path d="M-6 -20 L6 -20 M-6 -14 L6 -14" stroke="#B45309" stroke-width="2.4"/>' +
       '<path d="M-14 6 L-18 13 M-7 8 L-10 15 M0 8 L-2 15 M7 8 L6 15 M14 6 L14 13" stroke="#3b2210" stroke-width="1.2"/>';
     ship.appendChild(inner); svg.appendChild(ship);
-    var B = 12;                                       // Greek-key (meander) frame
-    [[0, 0, W, B], [0, H - B, W, B], [0, 0, B, H], [W - B, 0, B, H]].forEach(function (r) {
+    var B = 12;                                       // Greek-key (meander) frame; velo: a tricolore ribbon
+    if (VELO) { [['#2b4c8c', 0], ['#ffffff', 1], ['#c0392b', 2]].forEach(function (c) { var w3 = W / 3;
+        svg.appendChild(sv('rect', { x: c[1] * w3, y: 0, width: w3 + 1, height: B, fill: c[0] })); svg.appendChild(sv('rect', { x: c[1] * w3, y: H - B, width: w3 + 1, height: B, fill: c[0] })); });
+      svg.appendChild(sv('rect', { x: 0, y: 0, width: B, height: H, fill: '#2b4c8c' })); svg.appendChild(sv('rect', { x: W - B, y: 0, width: B, height: H, fill: '#c0392b' })); }
+    else [[0, 0, W, B], [0, H - B, W, B], [0, 0, B, H], [W - B, 0, B, H]].forEach(function (r) {
       svg.appendChild(sv('rect', { x: r[0], y: r[1], width: r[2], height: r[3], fill: 'url(#vgKey)' }));
     });
     svg.appendChild(sv('rect', { x: B - 1, y: B - 1, width: W - 2 * B + 2, height: H - 2 * B + 2, fill: 'none', stroke: '#d6b25e', 'stroke-width': 1.5 }));
@@ -201,7 +237,8 @@
   }
   function wave() {                                   // Juno's wave rolls across the ship
     ship.setAttribute('class', 'vg-ship hit'); storm.className = 'vg-storm on'; soundWave();
-    var p = at(pos), w = sv('path', { d: 'M' + (p.x - 60) + ' ' + (p.y + 6) + ' q15 -14 30 0 t30 0 t30 0 t30 0', 'class': 'vg-wave' });
+    var p = at(pos), w = VELO ? sv('text', { x: p.x + 14, y: p.y - 18, 'class': 'vg-puff' }) : sv('path', { d: 'M' + (p.x - 60) + ' ' + (p.y + 6) + ' q15 -14 30 0 t30 0 t30 0 t30 0', 'class': 'vg-wave' });
+    if (VELO) w.textContent = 'pfff…';
     svg.insertBefore(w, ship);
     if (!reduce) w.animate([{ opacity: 0, transform: 'translateX(-30px)' }, { opacity: .95, transform: 'translateX(0)' }, { opacity: 0, transform: 'translateX(30px)' }], { duration: 1100 });
     setTimeout(function () { w.remove(); ship.setAttribute('class', 'vg-ship'); storm.className = 'vg-storm'; }, 1150);
@@ -213,7 +250,7 @@
   function question() {
     card.className = 'vg-card'; card.innerHTML = '';
     var leg = Math.floor(pos / STEPS), to = D.ports[leg + 1];
-    var top = el('div', 'vg-top'); top.appendChild(el('span', null, 'Leg ' + (leg + 1) + ' of ' + D.legs.length + ' · toward ' + to.name)); top.appendChild(el('span', null, (pos % STEPS) + ' of ' + STEPS + ' steps'));
+    var top = el('div', 'vg-top'); top.appendChild(el('span', null, T.leg + (leg + 1) + ' of ' + D.legs.length + T.toward + to.name)); top.appendChild(el('span', null, (pos % STEPS) + ' of ' + STEPS + ' steps'));
     card.appendChild(top);
     var q = nextQ(), tried = false; asked++;
     card.appendChild(el('div', 'vg-q', q.q));
@@ -224,7 +261,7 @@
         Array.prototype.forEach.call(opts.children, function (x) { x.disabled = true; });
         if (i === q.answer) {
           b.classList.add('ok'); if (!tried) firstTry++;
-          fb.className = 'vg-fb ok'; fb.textContent = 'Rēctē! (Correct!) ' + (q.why || '');
+          fb.className = 'vg-fb ok'; fb.textContent = T.right + (q.why || '');
           soundStep();
           setTimeout(function () { sail(pos, pos + 1, function () { if (pos % STEPS === 0) port(pos / STEPS); else question(); }); }, 700);
         } else {
@@ -232,10 +269,9 @@
           Array.prototype.forEach.call(opts.children, function (x) { if (x.textContent === q.options[q.answer]) x.classList.add('ok'); });
           fb.className = 'vg-fb no';
           var back = pos > legStart;
-          fb.textContent = (back ? 'Juno sends a wave! Your ship is pushed back one step. ' : 'Juno sends a wave, but your ship is safe in the harbour. ') +
-            'The answer is “' + q.options[q.answer] + '.” ' + (q.why || '');
+          fb.textContent = (back ? T.back : T.safe) + T.answer + '“' + q.options[q.answer] + '.” ' + (q.why || '');
           wave();
-          var go = el('button', 'vg-btn', 'Sail on'); go.type = 'button';
+          var go = el('button', 'vg-btn', T.go); go.type = 'button';
           go.addEventListener('click', function () { if (back) sail(pos, pos - 1, question); else question(); });
           setTimeout(function () { card.appendChild(go); go.focus({ preventScroll: true }); }, 300);
         }
@@ -247,10 +283,10 @@
   function port(k) {
     legStart = pos; if (k === D.ports.length - 1) soundFinale(); else if (k > 0) soundPort();         // no fanfare on page load: browsers block sound before the first click
     var p = D.ports[k]; card.className = 'vg-card vg-port-card'; card.innerHTML = '';
-    card.appendChild(el('div', 'vg-top', k === 0 ? 'The voyage begins' : 'Port reached · ' + p.name));
+    card.appendChild(el('div', 'vg-top', k === 0 ? T.begins : T.reached + p.name));
     card.appendChild(el('h3', null, p.title || p.name));
     card.appendChild(el('p', 'vg-story', p.story));
-    if (p.latin) { card.appendChild(el('div', 'vg-latin', p.latin)); card.appendChild(el('div', 'vg-en', p.english || '')); }
+    var line = p.latin || p.french; if (line) { card.appendChild(el('div', 'vg-latin', line)); card.appendChild(el('div', 'vg-en', p.english || '')); }
     if (p.quote) {                                   // a line from the Aeneid about the journey and what it means
       var qb = el('div', 'vg-quote');
       qb.appendChild(el('div', 'vg-qk', 'From the Aeneid · ' + p.quote.ref));
@@ -260,16 +296,16 @@
       card.appendChild(qb);
     }
     var last = k === D.ports.length - 1;
-    var b = el('button', 'vg-btn', last ? 'See my voyage' : k === 0 ? 'Set sail' : 'Sail on to ' + D.ports[k + 1].name); b.type = 'button';
+    var b = el('button', 'vg-btn', last ? T.see : k === 0 ? T.start : T.on + D.ports[k + 1].name); b.type = 'button';
     b.addEventListener('click', function () { if (last) finish(); else question(); });
     card.appendChild(b); b.focus({ preventScroll: true });
   }
   function finish() {
     card.className = 'vg-card vg-port-card'; card.innerHTML = '';
-    card.appendChild(el('h3', null, 'Optimē! (Excellent!) You reached ' + D.ports[D.ports.length - 1].name + '.'));
-    card.appendChild(el('p', 'vg-story', 'You answered ' + firstTry + ' of ' + asked + ' questions right on the first try' + (missed ? ', and rode out ' + missed + ' of Juno’s waves.' : ' — Juno never touched you.')));
+    card.appendChild(el('h3', null, T.fin + D.ports[D.ports.length - 1].name + '.'));
+    card.appendChild(el('p', 'vg-story', 'You answered ' + firstTry + ' of ' + asked + ' questions right on the first try' + T.rode(missed)));
     if (D.next) card.appendChild(el('p', 'vg-en', D.next));
-    var again = el('button', 'vg-btn', 'Iterum! (Again!)'); again.type = 'button';
+    var again = el('button', 'vg-btn', T.again); again.type = 'button';
     again.addEventListener('click', function () { pos = 0; legStart = 0; asked = firstTry = missed = 0; bank = []; place(0); trail(0); port(0); });
     card.appendChild(again);
     try { window.dispatchEvent(new CustomEvent('mw-game', { detail: { name: D.title || 'Iter Aenēae', done: true, summary: 'reached ' + D.ports[D.ports.length - 1].name + ' · ' + firstTry + ' of ' + asked + ' right on the first try' } })); } catch (e) {}
