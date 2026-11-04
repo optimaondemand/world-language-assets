@@ -22,3 +22,21 @@
 | Title lettering "La France en profondeur" | `media/french1/home-title.png` | Optima Academy Online; Pinyon Script font (SIL Open Font License) | © Optima Academy Online |
 | Painting: Claude Monet, Impression, soleil levant (1872), full view | `media/french1/home-monet.jpg` (French 1 S2 Canvas home page hero) | Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg | Public domain |
 | Parchment texture (seamless tile) | `media/french1/home-paper.jpg` (French 1 S2 Canvas home page background) | Optima Academy Online (generated in code, `make_paper.py`) | © Optima Academy Online |
+
+## media/spanish1 — Spanish 1 S2 Siglo de Oro design (2026-11-03)
+All public domain via Wikimedia Commons unless noted:
+- home-meninas.jpg, g6.jpg: Diego Velázquez, *Las meninas*, 1656, Museo del Prado
+- g1.jpg: Emeric Essex Vidal, *Frente a la Aduana, Buenos Aires*, 1817
+- g2.jpg: Velázquez, *Vieja friendo huevos*, c. 1618, Scottish National Gallery
+- g3.jpg: Cristóbal de Villalpando, *Vista de la Plaza Mayor de México*, 1695
+- g4.jpg: Velázquez, *Las hilanderas*, c. 1655–60, Museo del Prado
+- g5.jpg: Juan Sánchez Cotán, *Bodegón con membrillo, repollo, melón y pepino*, c. 1602, San Diego Museum of Art
+- g7.jpg: Cusco School, *Procesión del Corpus Christi en el Cuzco*, c. 1750–70, Museo de Arte de Lima
+- g8.jpg: Velázquez, *Los tres músicos*, c. 1618, Gemäldegalerie Berlin
+- g9.jpg: a collage of g1–g8
+- plaza-madrid.jpg: Juan de la Corte, *Fiesta en la Plaza Mayor de Madrid*, 17th century, Museo de Historia de Madrid
+- plaza-sevilla.jpg: *Vista de la plaza de San Francisco y Ayuntamiento de Sevilla*, c. 1850, unknown painter
+- pendon-*.svg: kings as mounted knights from the *Grand Armorial équestre de la Toison d'or* (c. 1435; Navarre photo CC0) and the *Tumbo A* of Santiago Cathedral (13th c.); pendant frame drawn for this course
+- home-title.png: crown and Pillars of Hercules from the official coat of arms of Spain (Ley 33/1981), public domain; lettering IM Fell English (SIL OFL)
+- name-*.png: lettering UnifrakturCook (SIL OFL)
+- paper.jpg, artesonado.svg, azulejo.svg, campana.svg, santiago.svg: made for this course
