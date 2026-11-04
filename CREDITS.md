@@ -27,7 +27,7 @@
 All public domain via Wikimedia Commons unless noted:
 - home-meninas.jpg, g6.jpg: Diego Velázquez, *Las meninas*, 1656, Museo del Prado
 - g1.jpg: Emeric Essex Vidal, *Frente a la Aduana, Buenos Aires*, 1817
-- g2.jpg: Velázquez, *Vieja friendo huevos*, c. 1618, Scottish National Gallery
+- g2.jpg: Claudio Gay, *Una tertulia en 1790 (Santiago)*, lithograph by F. Lehnert after Gay, Atlas de la historia física y política de Chile, Paris, 1854 (Library of Congress, public domain)
 - g3.jpg: Cristóbal de Villalpando, *Vista de la Plaza Mayor de México*, 1695
 - g4.jpg: Velázquez, *Las hilanderas*, c. 1655–60, Museo del Prado
 - g5.jpg: Juan Sánchez Cotán, *Bodegón con membrillo, repollo, melón y pepino*, c. 1602, San Diego Museum of Art
