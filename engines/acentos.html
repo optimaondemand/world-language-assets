@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accent buttons</title>
+<!-- acentos.html: one-click accent buttons for Canvas QUIZZES (David 2026-11-17 test). Canvas strips JavaScript from quiz
+     pages, so a quiz embeds this page in an iframe: a click puts the letter on the clipboard; the student then presses
+     Ctrl+V (Cmd+V on a Mac) in the answer box. ?lang=es (default) | fr. Cannot type into the quiz box itself (other site). -->
+<style>
+  html, body { margin: 0; background: #fff; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1a2340; }
+  .wrap { padding: 6px 8px; }
+  .help { font-size: 13px; color: #41506b; margin: 0 0 4px; }
+  button { min-width: 38px; font-size: 20px; padding: 3px 8px; margin: 3px 4px 0 0; border: 1px solid #b9c4d8; background: #fff; border-radius: 6px; cursor: pointer; color: #0E1C42; }
+  button:hover { background: #f3f6fb; }
+  button.ok { background: #2A9D5C; border-color: #2A9D5C; color: #fff; }
+  .msg { font-size: 13px; min-height: 18px; margin-top: 4px; color: #1d5e20; font-weight: 600; }
+  .msg.no { color: #8f1d12; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="help">Click a letter to copy it, then press <strong>Ctrl+V</strong> (Mac: <strong>Cmd+V</strong>) in your answer.</p>
+  <div id="row"></div>
+  <div class="msg" id="msg" aria-live="polite"></div>
+</div>
+<script>
+(function () {
+  var sets = { es: 'á é í ó ú ü ñ ¿ ¡ Á É Í Ó Ú Ñ', fr: 'é è ê à â ç ô î ï ù û ë œ É È Ç À' };
+  var lang = (location.search.match(/lang=(\w+)/) || [])[1] || 'es';
+  var row = document.getElementById('row'), msg = document.getElementById('msg');
+  function fallback(t) {          // older route: a hidden text box + the copy command (works inside most iframes)
+    var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta); return ok;
+  }
+  function done(b, t, ok, how) {
+    [].forEach.call(row.children, function (x) { x.classList.remove('ok'); });
+    if (ok) { b.classList.add('ok'); msg.className = 'msg'; msg.textContent = '✓ ' + t + ' copied. Now press Ctrl+V (Mac: Cmd+V) in your answer.'; }
+    else { msg.className = 'msg no'; msg.textContent = 'Copy is blocked here. Select the letter and copy it instead.'; }
+    try { window.parent.postMessage({ acentos: how, ok: ok }, '*'); } catch (e) {}
+  }
+  sets[lang].split(' ').forEach(function (t) {
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('aria-label', 'Copy ' + t);
+    b.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { done(b, t, true, 'clipboard'); },
+          function () { done(b, t, fallback(t), 'execCommand'); });
+      } else done(b, t, fallback(t), 'execCommand');
+    });
+    row.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
